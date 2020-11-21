@@ -19,10 +19,16 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 	
+	//TODO: estos endpoints son provisorios y a los fines de testear determinados
+	//		metodos
 	
 	@GetMapping("/patient")
 	public List<Patient> getPatientByTreatmentId(){
 		return this.patientService.findAllPatientsByTreatmentId(Long.valueOf(1));
 	}
 	
+	@GetMapping("/patientsByDiagnosisId")
+	public List<Patient> getPatientByDiagnosisId(){
+		return this.patientService.findAllPatientsByDiagnosisId(Long.valueOf(1));
+	}
 }

@@ -21,4 +21,6 @@ public interface PatientService {
 	List<Patient> findAllPatients();
 	
 	List<Patient> findAllPatientsByTreatmentId(Long treatmentId);
+	
+	List<Patient> findAllPatientsByDiagnosisId(Long diagnosisId);
 }

@@ -36,7 +36,7 @@ public class Patient {
 	private List<Treatment> treatments;
 	
 	@ManyToMany
-	@JoinTable(name = "patien_reason",
+	@JoinTable(name = "patient_reason",
 			joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "reason_id", referencedColumnName = "id")
 			)

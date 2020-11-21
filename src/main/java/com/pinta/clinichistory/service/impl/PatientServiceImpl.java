@@ -63,4 +63,9 @@ public class PatientServiceImpl implements PatientService {
 		return this.patientRepository.findByTreatmentId(treatmentId);
 	}
 
+	@Override
+	public List<Patient> findAllPatientsByDiagnosisId(Long diagnosisId) {
+		return this.patientRepository.findByDiagnosisId(diagnosisId);
+	}
+
 }

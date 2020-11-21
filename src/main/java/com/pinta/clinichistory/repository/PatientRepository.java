@@ -19,4 +19,8 @@ public interface PatientRepository extends CrudRepository<Patient, Long>{
 			)
 	List<Patient> findByTreatmentId(@Param("treatmentId")Long treatmentId);
 	
+	@Query(nativeQuery = true, value = "SELECT p.* FROM patient AS p "
+									 + "WHERE p.diagnosis_id = :diagnosisId"
+			)
+	List<Patient> findByDiagnosisId(@Param("diagnosisId")Long diagnosisId);
 }
