@@ -14,9 +14,9 @@ public interface ReasonService {
 	
 	List<Reason> findAllReasons();
 	
-	void deleteReason(Reason reason) throws EntityNotFoundException;
+	void deleteReason(Reason reason);
 	
-	void deleteReasonById(Long id) throws EntityNotFoundException;
+	void deleteReasonById(Long id);
 	
 	void updateReason(Reason reason) throws EntityNotFoundException;
 }
