@@ -3,6 +3,7 @@ package com.pinta.clinichistory.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "patient")
@@ -35,25 +38,19 @@ public class Patient {
 			)
 	private List<Treatment> treatments;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL )
 	@JoinTable(name = "patient_reason",
 			joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "reason_id", referencedColumnName = "id")
 			)
 	private List<Reason> reasons;
 	
-	@ManyToOne
-	@JoinColumn(name = "diagnosis_id")
-	private Diagnosis diagnosis;
-	//segun el modelo en la DB un paciente siempre deberia tener un diagnostico para
-	//evitar nulos en tabla
-	//motivo de consulta ej: "diarrea"
-	//enfermedad actual explicacion detallada de lo que le pasa
-	//antecedentes personales 
-	//			-patalogicos: enfermedad infancia,
-	//						enfermedades de ahora, alergias, traumatismos, ciru
-	//			-Habitos: .Fumar, alimentacion,
-	//antecedense socioeconomicos.
+	@ManyToMany
+	@JoinTable(name = "patient_diagnosis",
+			joinColumns = @JoinColumn(name = "patient_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "diagnosis_id", referencedColumnName = "id" )
+			)
+	private List<Diagnosis> diagnosis;
 	
 	public Patient() {
 		
@@ -100,6 +97,12 @@ public class Patient {
 	public void setTreatments(List<Treatment> treatments) {
 		this.treatments = treatments;
 	}
+	public void addTreatment(Treatment treatment) {
+		this.treatments.add(treatment);
+	}
+	public void removeTreatment(Treatment treatment) {
+		this.treatments.removeIf(t -> t.getId().equals(treatment.getId()));
+	}
 
 	public List<Reason> getReasons() {
 		return reasons;
@@ -107,6 +110,28 @@ public class Patient {
 
 	public void setReasons(List<Reason> reasons) {
 		this.reasons = reasons;
+	}
+	
+	public void addReason(Reason reason) {
+		this.reasons.add(reason);
+	}
+	public boolean removeReason(Reason reason) {
+		return this.reasons
+				   .removeIf(r -> r.getId().equals(reason.getId()));
+	}
+
+	public List<Diagnosis> getDiagnosis() {
+		return diagnosis;
+	}
+
+	public void setDiagnosis(List<Diagnosis> diagnosis) {
+		this.diagnosis = diagnosis;
+	}
+	public void addDiagnosis(Diagnosis diagnosis) {
+		this.diagnosis.add(diagnosis);
+	}
+	public void removeDiagnosis(Diagnosis diagnosis) {
+		this.diagnosis.removeIf(d -> d.getId().equals(diagnosis.getId()));
 	}
 	
 	

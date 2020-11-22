@@ -7,11 +7,13 @@ import java.util.stream.StreamSupport;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pinta.clinichistory.model.Diagnosis;
 import com.pinta.clinichistory.repository.DiagnosisRepository;
 import com.pinta.clinichistory.service.DiagnosisService;
 
+@Service
 public class DiagnosisServiceImpl implements DiagnosisService{
 	
 	@Autowired

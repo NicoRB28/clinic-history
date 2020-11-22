@@ -1,9 +1,12 @@
 package com.pinta.clinichistory.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,8 @@ public class Reason {
 	
 	private String name;
 	
+	@ManyToMany(mappedBy="reasons")
+	private List<Patient> patients;
 	
 	public Reason() {
 		
