@@ -13,4 +13,13 @@ public class PatientMapper {
 		
 		return patient;
 	}
+	
+	public static PatientDTO fromPatientToPatientDTO(Patient data) {
+		PatientDTO dto = new PatientDTO();
+		dto.setId(data.getId());
+		dto.setDni(data.getDni());
+		dto.setLastName(data.getLastName());
+		dto.setName(data.getName());
+		return dto;
+	}
 }

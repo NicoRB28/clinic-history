@@ -1,6 +1,7 @@
 package com.pinta.clinichistory.model;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.pinta.clinichistory.dto.DiagnosisDTO;
 
 @Entity
 @Table(name = "diagnosis")
@@ -28,6 +31,14 @@ public class Diagnosis {
 	
 	public Diagnosis() {
 		
+	}
+	
+	public Diagnosis(DiagnosisDTO data) {
+		this.setName(data.getName());
+		this.setId(data.getId());
+		this.illnesses = 
+				data.getIllnesses().stream()
+				.map(Illness::new).collect(Collectors.toList());
 	}
 	
 	public List<Patient> getPatients() {

@@ -47,7 +47,7 @@ public class PatientController {
 	public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO){
 		Patient newPatient = PatientMapper.patientDtoToPatient(patientDTO);
 		patientService.createPatient(newPatient);
-		return new ResponseEntity<PatientDTO>(patientDTO,HttpStatus.CREATED);
+		return new ResponseEntity<PatientDTO>(PatientMapper.fromPatientToPatientDTO(newPatient),HttpStatus.CREATED);
 	}
 	
 	//TODO: estos endpoints son provisorios y a los fines de testear determinados
