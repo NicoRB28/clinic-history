@@ -81,5 +81,8 @@ public class Diagnosis {
 		this.name = name;
 	}
 	
+	public void addIllness(Illness illness) {
+		this.illnesses.add(illness);
+	}
 	
 }

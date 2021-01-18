@@ -19,4 +19,6 @@ public interface ReasonService {
 	void deleteReasonById(Long id);
 	
 	void updateReason(Reason reason) throws EntityNotFoundException;
+	
+	Reason findByName(String name);
 }

@@ -1,5 +1,6 @@
 package com.pinta.clinichistory.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.pinta.clinichistory.dto.ReasonDTO;
 
 @Entity
 @Table(name = "reason")
@@ -23,7 +26,12 @@ public class Reason {
 	private List<Patient> patients;
 	
 	public Reason() {
-		
+		this.patients = new ArrayList<>();
+	}
+	
+	public Reason(ReasonDTO data) {
+		this.id = data.getId();
+		this.name = data.getName();
 	}
 
 	public Long getId() {

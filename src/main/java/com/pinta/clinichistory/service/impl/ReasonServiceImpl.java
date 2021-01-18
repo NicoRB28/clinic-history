@@ -53,4 +53,9 @@ public class ReasonServiceImpl implements ReasonService{
 		reasonInDb.setName(reason.getName());
 		reasonRepository.save(reasonInDb);
 	}
+
+	@Override
+	public Reason findByName(String name) {
+		return this.reasonRepository.findByName(name);
+	}
 }

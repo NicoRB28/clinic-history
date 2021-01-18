@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.pinta.clinichistory.model.Reason;
 
 public interface ReasonRepository extends CrudRepository<Reason, Long>{
-
+	Reason findByName(String name);
 }
