@@ -46,7 +46,7 @@ public class PatientController {
 	@PostMapping("/patient/create")
 	public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO){
 		Patient newPatient = PatientMapper.patientDtoToPatient(patientDTO);
-		Patient patientDb = patientService.createPatient(newPatient);
+		patientService.createPatient(newPatient);
 		return new ResponseEntity<PatientDTO>(patientDTO,HttpStatus.CREATED);
 	}
 	
@@ -57,9 +57,9 @@ public class PatientController {
 		return this.patientService.findAllPatients();
 	}
 	
-	@GetMapping("/patient")
-	public List<Patient> getPatientByTreatmentId(){
-		return this.patientService.findAllPatientsByTreatmentId(Long.valueOf(1));
+	@GetMapping("/patient/{id}")
+	public List<Patient> getPatientByTreatmentId(@PathVariable Long id){
+		return this.patientService.findAllPatientsByTreatmentId(id);
 	}
 	
 	@GetMapping("/patientsByDiagnosisId")

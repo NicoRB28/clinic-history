@@ -6,53 +6,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "diagnosis")
-public class Diagnosis {
-	
+@Table(name = "illness")
+public class Illness {
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	private String name;
 	
-	@ManyToMany(mappedBy = "diagnosis")
-	private List<Patient> patients;
+	private String description;
 	
 	@OneToMany
-	private List<Illness> illnesses;
+	private List<Illness> complications;
 	
-	public Diagnosis() {
-		
-	}
 	
-	public List<Patient> getPatients() {
-		return patients;
+	public List<Illness> getComplications() {
+		return complications;
 	}
 
-
-
-	public void setPatients(List<Patient> patients) {
-		this.patients = patients;
+	public void setComplications(List<Illness> complications) {
+		this.complications = complications;
 	}
-
-
-
-	public List<Illness> getIllnesses() {
-		return illnesses;
-	}
-
-
-
-	public void setIllnesses(List<Illness> illnesses) {
-		this.illnesses = illnesses;
-	}
-
-
 
 	public Long getId() {
 		return id;
@@ -68,6 +47,18 @@ public class Diagnosis {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Illness() {
+		super();
 	}
 	
 	
